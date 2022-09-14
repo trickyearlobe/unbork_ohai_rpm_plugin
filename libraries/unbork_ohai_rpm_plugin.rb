@@ -128,10 +128,10 @@ RPMPLUGIN
 
 Chef::Log.warn "Path to OHAI RPM plugin is #{path_to_ohai}"
 if ::File.exist?(path_to_rpm_plugin)
-  if File.read(path_to_rpm_plugin).include? 'MACROS_MARKER = /========================/.freeze unless defined?(MACROS_MARKER)'
+  if ::File.read(path_to_rpm_plugin).include? 'MACROS_MARKER = /========================/.freeze unless defined?(MACROS_MARKER)'
     Chef::Log.warn "OHAI RPM plugin #{path_to_ohai} seems good at first glance"
   else
     Chef::Log.warn "Replacing OHAI RPM plugin #{path_to_ohai}"
-    File.write(path_to_rpm_plugin, replacement_rpm_plugin_content)
+    ::File.write(path_to_rpm_plugin, replacement_rpm_plugin_content)
   end
 end
